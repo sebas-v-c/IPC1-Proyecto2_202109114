@@ -9,10 +9,6 @@ const passport = require('passport');
 // const fetch = require('node-fetch');
 // const _ require('underscore');
 
-const initializePassport = require('../passport-config');
-initializePassport(
-  passport
-);
 
 // Import routers
 const usersRouter = require('./users/usersRoute');
@@ -23,6 +19,7 @@ const authRouter = require('../auth/authRouter');
 
 
 // Middleware
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -32,13 +29,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-// app.use(session({
-//   secret: 'secret',
-//   resave: true,
-//   saveUninitialized: true
-// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+app.use(passport.authenticate('session'));
 
 
 // Routes

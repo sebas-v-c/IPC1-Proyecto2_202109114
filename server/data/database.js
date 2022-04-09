@@ -1,6 +1,4 @@
 
-
-
 module.exports = class {
   table = null;
   constructor(jsonFile) {
@@ -14,15 +12,16 @@ module.exports = class {
   }
 
 
-  // TODO
   findUserByUsername(username) {
-    return {
-      "user": "no",
-      "password": "$2b$10$fEF0C06py3Cg7CIMyHsiFuB3jcPTX8O7pb4pJNAR77bQ8JnK6Lhr6"
-    };
+    let user;
+    this.table.users.forEach(item => {
+      if (item.username === username) {
+        user = item;
+      }
+    });
 
+    return user;
   }
-
 
 
   get table() {

@@ -1,11 +1,11 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const databse = require('./data/database');
-const db = new databse(user);
+const database = require('./data/database');
+const db = new database('users')
 
-function initialize(passport) {
+function initialize(passport, brypt) {
   // Function
-  const authenticateUser = (username, password, done) => {
+  const authenticateUser = async (username, password, done) => {
     const user = db.findUserByUsername(username);
 
     if (user === null) {
@@ -13,7 +13,8 @@ function initialize(passport) {
     }
 
     try {
-      if (await bcrypt.compare(password, user.password)) {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
         return done(null, user)
       } else {
         return done(null, false, { message: "Password incorrect" });
@@ -24,18 +25,16 @@ function initialize(passport) {
 
   }
 
-
-
   passport.use(new LocalStrategy(
-    { usernameField: 'user' }), authenticateUser
+    { usernameField: 'username' }, authenticateUser)
   );
-  passport.serializeUser((user, done) => {
 
-  });
+  passport.serializeUser((user, done) => done(null, user.username));
 
-  passport.deSerializeUser((id, done) => {
-
+  passport.deserializeUser((username, done) => {
+    return done(null, db.findUserByUsername(username));
   });
 }
+
 
 module.exports = initialize;
