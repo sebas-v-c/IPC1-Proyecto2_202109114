@@ -8,10 +8,10 @@ const cors = require('cors');
 const passport = require('passport');
 // const fetch = require('node-fetch');
 // const _ require('underscore');
-
+// Middleware
+const authMidwr = require('../auth/middleware');
 
 // Import routers
-const usersRouter = require('./users/usersRoute');
 const authRouter = require('../auth/authRouter');
 
 
@@ -29,9 +29,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-app.use(passport.authenticate('session'));
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(passport.authenticate('session'));
 
 
 // Routes
@@ -39,7 +39,10 @@ app.get('/', (req, res) => {
   res.send('<h1>API trabajando al 100%</h1>');
 })
 
-app.use('/api/users', usersRouter);
+app.get('/homepage', authMidwr.checkAuthenticated, (req, res) => {
+  res.send('<h1>Estas ingresado</h1>')
+})
+
 
 app.use('/api/auth', authRouter);
 
