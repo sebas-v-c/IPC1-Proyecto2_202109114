@@ -13,6 +13,8 @@ const authMidwr = require('../auth/middleware');
 
 // Import routers
 const authRouter = require('../auth/authRouter');
+const pokeRouter = require('./pokemon/pokemonRoutes');
+const usersRouter = require('./users/usersRoutes');
 
 
 // Settings
@@ -45,6 +47,8 @@ app.get('/homepage', authMidwr.checkAuthenticated, (req, res) => {
 
 
 app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/pokemon', pokeRouter);
 
 
 // Static files

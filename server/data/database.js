@@ -7,7 +7,7 @@ module.exports = class {
         this.table = require('./users/users.js');
         break;
       case 'pokemon':
-        this.table = require('./pokemon/pokemon.json');
+        this.table = require('./pokemon/pokemon.js');
     }
   }
 
@@ -21,6 +21,17 @@ module.exports = class {
     });
 
     return user;
+  }
+
+  findPokemonById(id) {
+    let pokemon;
+    this.table.pokemon.forEach(poke => {
+      if (poke.numero === id) {
+        pokemon = poke;
+      }
+    });
+
+    return pokemon;
   }
 
 
