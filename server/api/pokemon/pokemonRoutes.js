@@ -16,44 +16,67 @@ router.get('/', checkAuthenticated, async (req, res) => {
 });
 
 
-// TODO obtain pokemon by number
-router.get('/:id', checkAuthenticated, (req, res) => {
+router.get('/:id', /* checkAuthenticated, */(req, res) => {
   const id = parseInt(req.params.id);
-  if (!id) {
-    res.status(500).json({ "message": "ID not found" })
-  }
+  ifInvalidParam(id, res, 'ID');
   const pokemon = db.findPokemonById(id);
-  if (!pokemon) {
-    res.status(500).json({ "message": "no pokemon found" })
-  }
+  ifNotFound(pokemon, res)
+
   res.json(pokemon);
 });
-// TODO obtain pokemon by name
-router.post('/name/:name', checkAuthenticated, (req, res) => {
-  const name = req.params.name;
-  if (!name) {
-    res.status(500).json({ "message": "No name send" });
-  }
+
+router.get('/name/:name', /* checkAuthenticated, */(req, res) => {
+  let name = req.params.name;
+  ifInvalidParam(name, res, 'name');
+  name = name.toLowerCase();
 
   const pokemon = db.findPokemonByName(name);
-  if (!pokemon) {
-    res.status(500).json({ "message": "No pokemon found" });
-  }
+
+  ifNotFound(pokemon, res);
+
   res.json(pokemon);
 });
-// TODO obtain pokemon by type
-router.post('/type/:type', checkAuthenticated, (req, res) => {
-  const type = req.params.type;
-  if (!type) {
-    res.status(500).json({ "message": "No type send" });
-  }
+
+router.get('/type/:type', /* checkAuthenticated, */(req, res) => {
+  let type = req.params.type;
+  ifInvalidParam(type, res, 'type');
+
+  type = type.toLowerCase();
 
   const pokemon = db.findPokemonByType(type);
+
+  ifNotFound(pokemon, res);
+
+  res.json(pokemon);
+});
+
+router.get('/all/:param', /* checkAuthenticated,*/(req, res) => {
+  let param = req.params.param;
+  ifInvalidParam(param, res, 'parameter');
+  param = param.toLowerCase();
+  param = param.split('_').join(' ')
+  if (parseInt(param)) {
+    param = parseInt(param);
+  }
+
+  const pokemon = db.findPokemonByParam(param);
+  ifNotFound(pokemon, res);
+
+  res.json(pokemon);
+})
+
+
+function ifNotFound(pokemon, res) {
   if (!pokemon) {
     res.status(500).json({ "message": "No pokemon found" });
   }
-  res.json(pokemon);
-});
+}
+
+function ifInvalidParam(param, res, type) {
+  if (!param) {
+    res.status(500).json({ "message": `Invalid ${type}` })
+  }
+}
 
 
 module.exports = router;
