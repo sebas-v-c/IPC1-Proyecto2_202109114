@@ -5,7 +5,6 @@ const jwtAcces = process.env.ACCESS_TOKEN_SECRET;
 
 function authenticate(req, res, next) {
   const token = req.body.token || req.query.token || req.headers["x-acces-token"];
-  console.log(token);
 
   if (!token) {
     return res.status(403).json({ message: "Token is required" });
