@@ -3,6 +3,7 @@ const morgan = require('morgan');
 // const Joi = require('joi');
 const app = express();
 const cors = require('cors');
+const authenticate = require('../auth/middleware');
 // const fetch = require('node-fetch');
 // const _ require('underscore');
 // Middleware
@@ -17,7 +18,6 @@ const usersRouter = require('./users/usersRoutes');
 
 
 // Middleware
-app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.send('<h1>API trabajando al 100%</h1>');
 })
 
-app.get('/homepage', (req, res) => {
+app.post('/homepage', authenticate, (req, res) => {
   res.send('<h1>Estas ingresado</h1>')
 })
 
