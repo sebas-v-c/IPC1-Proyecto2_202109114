@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { checkAuthenticated } = require('../../auth/middleware');
 const database = require('../../data/database');
 const db = new database('pokemon');
 
 
-router.get('/', checkAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
   const response = await db.table;
 
   try {
@@ -16,7 +15,7 @@ router.get('/', checkAuthenticated, async (req, res) => {
 });
 
 
-router.get('/:id', /* checkAuthenticated, */(req, res) => {
+router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
   ifInvalidParam(id, res, 'ID');
   const pokemon = db.findPokemonById(id);
@@ -25,7 +24,7 @@ router.get('/:id', /* checkAuthenticated, */(req, res) => {
   res.json(pokemon);
 });
 
-router.get('/name/:name', /* checkAuthenticated, */(req, res) => {
+router.get('/name/:name', (req, res) => {
   let name = req.params.name;
   ifInvalidParam(name, res, 'name');
   name = name.toLowerCase();
@@ -37,7 +36,7 @@ router.get('/name/:name', /* checkAuthenticated, */(req, res) => {
   res.json(pokemon);
 });
 
-router.get('/type/:type', /* checkAuthenticated, */(req, res) => {
+router.get('/type/:type', (req, res) => {
   let type = req.params.type;
   ifInvalidParam(type, res, 'type');
 
@@ -50,7 +49,7 @@ router.get('/type/:type', /* checkAuthenticated, */(req, res) => {
   res.json(pokemon);
 });
 
-router.get('/all/:param', /* checkAuthenticated,*/(req, res) => {
+router.get('/all/:param', (req, res) => {
   let param = req.params.param;
   ifInvalidParam(param, res, 'parameter');
   param = param.toLowerCase();
