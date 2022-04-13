@@ -4,10 +4,10 @@
 
 export default function () {
   const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.accessToken) {
+  if (user && user.token) {
     // This header is specific for node.js and express
     // return { Authorization: 'Bearer ' + user.accesToken };
-    return { 'x-acces-token': user.accesToken };
+    return { 'x-acces-token': user.token };
   } else {
     return {};
   }

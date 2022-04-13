@@ -15,6 +15,7 @@ class App extends React.Component {
     this.state = {
       currentUser: undefined
     }
+    this.navigate = useNavigate();
   }
 
   componentDidMount() {
@@ -39,21 +40,14 @@ class App extends React.Component {
       <div>
         <nav className='navbar navbar-expand navbar-dark bg-dark'>
           <Link to={"/"} className="navbar-brand">
-            USAC
+            PokeInfo
           </Link>
-          <div className='navbar-nav mr-auto'>
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-          </div>
 
           {currentUser ? (
             <div className='navbar-nav ml-auto'>
               <li className='nav-item' >
                 <Link to={"/pokedex"} className='nav-link'>
-                  {currentUser.username}
+                  {currentUser.name}
                 </Link>
               </li>
               <li className='nav-item'>
@@ -64,7 +58,7 @@ class App extends React.Component {
             </div>
           ) : (
             <div className='navbar-nav ml-auto'>
-              <li className='nav-time'>
+              <li className='nav-item'>
                 <Link to={'/login'} className='nav-link'>
                   Login
                 </Link>
@@ -75,9 +69,10 @@ class App extends React.Component {
 
         <div className='container mt-3'>
           <Routes>
-            <Route path={["/", "/home"]} element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/pokedex" element={<Pokedex />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/pokedex' element={<Pokedex />} />
           </Routes>
         </div>
 
