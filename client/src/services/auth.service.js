@@ -1,5 +1,5 @@
 import axios from "axios";
-const APIURL = "http://192.168.0.21:5000/api/auth/"
+const APIURL = "http://localhost:5000/api/auth/"
 
 
 // Local storage save the data in an xml file

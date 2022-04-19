@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -66,11 +66,15 @@ const Login = () => {
     }
   };
 
-  const user = JSON.parse(localStorage.getItem('user'));
 
-  if (user) {
-    navigate('/pokedex');
-  }
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+      navigate('/pokedex');
+    }
+  }, []);
+
 
   return (
     <div className='col-md-12'>

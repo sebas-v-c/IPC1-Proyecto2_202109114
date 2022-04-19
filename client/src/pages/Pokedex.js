@@ -1,50 +1,31 @@
-import React from 'react';
-import UserService from '../services/user.service';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+// import UserService from '../services/user.service';
+import PokemonList from '../components/pokemons/PokemonList';
+import SearchArea from '../components/pokemons/PokemonList';
+
+
+function PokedexPage(props) {
+  let navigate = useNavigate();
+
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (!user) {
+      navigate('/login');
+    }
+  }, []);
 
 
 
-class PokedexPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      content: ""
-    };
-  }
 
-
-  componentDidMount() {
-    UserService.getPokedexPage()
-      .then(
-        response => {
-          this.setState({
-            content: response.data
-          });
-        },
-        error => {
-          this.setState({
-            content:
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString()
-          });
-        }
-      );
-  }
-
-
-  render() {
-    return (
-      <div className='container'>
-        <header className='jumbotron'>
-          <h3>{this.state.content}</h3>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className='container'>
+      <SearchArea />
+      <PokemonList />
+    </div>
+  );
 }
-
 
 
 export default PokedexPage;
