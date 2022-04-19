@@ -62,9 +62,15 @@ const Login = () => {
           });
     } else {
       setLoading(false);
+      window.location.reload();
     }
   };
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (user) {
+    navigate('/pokedex');
+  }
 
   return (
     <div className='col-md-12'>

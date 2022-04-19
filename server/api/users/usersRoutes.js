@@ -15,12 +15,12 @@ router.use(function (req, res, next) {
 
 
 router.get('/test', auth, (req, res) => {
-  res.status(200).send("Pokedex content")
+  res.status(200).send("User Logged In")
 })
 
 
 
-router.get('/all', (req, res) => {
+router.get('/all', auth, (req, res) => {
   res.json(db.table);
 })
 

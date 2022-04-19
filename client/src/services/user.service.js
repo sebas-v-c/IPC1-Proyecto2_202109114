@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-const APIURL = "http://localhost:5000/api/users/"
+const APIURL = "http://192.168.0.21:5000/api/users/"
 
 
 class UserService {

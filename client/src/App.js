@@ -15,7 +15,6 @@ class App extends React.Component {
     this.state = {
       currentUser: undefined
     }
-    this.navigate = useNavigate();
   }
 
   componentDidMount() {
