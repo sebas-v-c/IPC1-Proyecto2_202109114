@@ -17,11 +17,17 @@ router.get('/', async (req, res) => {
 
 router.get('/id/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  ifInvalidParam(id, res, 'ID');
-  const pokemon = db.findPokemonById(id);
-  ifNotFound(pokemon, res)
 
-  res.json([pokemon]);
+  if (!id) {
+    res.status(500).json({ message: 'Invalid ID' })
+  } else {
+
+    const pokemon = db.findPokemonById(id);
+    ifNotFound(pokemon, res)
+
+    res.json([pokemon]);
+  }
+
 });
 
 router.get('/name/:name', (req, res) => {

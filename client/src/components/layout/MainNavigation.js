@@ -16,7 +16,7 @@ function MainNavigation(props) {
           </Nav>
           {props.user ? (
             <Nav>
-              <Nav.Link href="/pokedex">{props.user.name}</Nav.Link>
+              <Nav.Link href="/user">{props.user.name}</Nav.Link>
               <Nav.Link href="/pokedex">Pokedex</Nav.Link>
               <Nav.Link href="/" onClick={props.onClick}>
                 Log Out

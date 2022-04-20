@@ -6,6 +6,7 @@ import AuthService from "./services/auth.service"
 import Login from "./pages/Login"
 import Pokedex from "./pages/Pokedex"
 import Home from "./pages/Home"
+import UserInfo from "./pages/UserInfo"
 import MainNavigation from './components/layout/MainNavigation';
 
 
@@ -47,6 +48,7 @@ class App extends React.Component {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/pokedex' element={<Pokedex />} />
+            <Route path='/user' element={<UserInfo />} />
           </Routes>
         </div>
 

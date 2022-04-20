@@ -3,7 +3,6 @@ import Card from '../ui/Card';
 import { Col } from 'react-bootstrap';
 
 
-const COLORS = ['CornflowerBlue', 'YellowGreen', 'Tomato'];
 const capitalizeFirstLetter = ([first, ...rest], locale = navigator.language) =>
   first.toLocaleUpperCase(locale) + rest.join('')
 
@@ -13,23 +12,11 @@ function PokemonItem(props) {
   const name = capitalizeFirstLetter(props.pokemon.nombre);
   const moves = props.pokemon.ataque;
   const type = props.pokemon.tipo;
-  let color;
-  switch (type[0]) {
-    case 'agua':
-      color = COLORS[0];
-      break;
-    case 'planta':
-      color = COLORS[1];
-      break;
-    case 'fuego':
-      color = COLORS[2];
-      break;
-  }
 
 
   return (
     <Col>
-      <Card color={color}>
+      <Card>
         <div className='card-header'>
           <h4 className='card-title'>{name}</h4>
         </div>

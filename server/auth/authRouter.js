@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
         }
       );
 
-      res.status(200).json({ name: username, token: token });
+      res.status(200).json({ name: username, token: token, avatar: user.avatar });
       return;
     }
 

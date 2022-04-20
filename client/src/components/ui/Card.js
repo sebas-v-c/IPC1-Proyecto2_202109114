@@ -5,7 +5,7 @@ function Card(props) {
     <div
       className='card'
       style={{
-        backgroundColor: props.color,
+        /* backgroundColor: props.color, */
         width: '18rem'
       }}
     >

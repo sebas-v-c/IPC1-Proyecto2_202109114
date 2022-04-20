@@ -37,13 +37,17 @@ function PokedexPage(props) {
 
     setIsLoading(true);
     if (searchInfo.text !== '') {
-      console.log(searchInfo.text);
       PokemonService.getPokemonContent(searchInfo.filter, searchInfo.text)
         .then((response) => {
           const pokemon = response.data;
 
           setLoadedPokemon(pokemon);
           setIsLoading(false);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          setLoadedPokemon([]);
+          console.log(error);
         });
     } else {
       PokemonService.getAllPokemonContent()
@@ -58,20 +62,37 @@ function PokedexPage(props) {
   }, [searchInfo]);
 
 
-  if (isLoading || !loadedPokemon) {
+  if (isLoading) {
     return (
       <section>
         <SearchArea onSubmit={addSubmitHandler} />
-        {/* <p>Cargando...</p> */}
+        <p>Cargando...</p>
       </section>
     );
   }
 
 
+  if (loadedPokemon.length === 0) {
+    return (
+      <section>
+        <SearchArea onSubmit={addSubmitHandler} />
+        <p>No se encontró ningún Pokemon :,(</p>
+      </section>
+    );
+  }
+
+  let type;
+  if (searchInfo.filter === 'type') {
+    type = searchInfo.text;
+  } else {
+    type = ''
+  }
+
   return (
     <section>
       <SearchArea onSubmit={addSubmitHandler} />
-      <PokemonList pokemon={loadedPokemon} />
+      <br />
+      <PokemonList pokemon={loadedPokemon} type={type} />
     </section>
   );
 }
