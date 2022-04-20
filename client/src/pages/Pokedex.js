@@ -6,7 +6,6 @@ import SearchArea from '../components/search/SearchArea';
 import PokemonService from '../services/pokemon.service';
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { CardGroup } from 'react-bootstrap';
 
 
 function PokedexPage(props) {
@@ -38,9 +37,10 @@ function PokedexPage(props) {
 
     setIsLoading(true);
     if (searchInfo.text !== '') {
+      console.log(searchInfo.text);
       PokemonService.getPokemonContent(searchInfo.filter, searchInfo.text)
         .then((response) => {
-          const pokemon = response.data.pokemon;
+          const pokemon = response.data;
 
           setLoadedPokemon(pokemon);
           setIsLoading(false);
@@ -54,13 +54,15 @@ function PokedexPage(props) {
           setIsLoading(false);
         });
     }
-  }, []);
+
+  }, [searchInfo]);
 
 
-  if (isLoading) {
+  if (isLoading || !loadedPokemon) {
     return (
       <section>
-        <p>Cargando...</p>
+        <SearchArea onSubmit={addSubmitHandler} />
+        {/* <p>Cargando...</p> */}
       </section>
     );
   }

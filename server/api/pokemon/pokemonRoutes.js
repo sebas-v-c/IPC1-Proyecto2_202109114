@@ -21,7 +21,7 @@ router.get('/id/:id', (req, res) => {
   const pokemon = db.findPokemonById(id);
   ifNotFound(pokemon, res)
 
-  res.json(pokemon);
+  res.json([pokemon]);
 });
 
 router.get('/name/:name', (req, res) => {
@@ -33,7 +33,7 @@ router.get('/name/:name', (req, res) => {
 
   ifNotFound(pokemon, res);
 
-  res.json(pokemon);
+  res.json([pokemon]);
 });
 
 router.get('/type/:type', (req, res) => {
