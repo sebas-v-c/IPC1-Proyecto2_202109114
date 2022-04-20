@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
   const id = parseInt(req.params.id);
   ifInvalidParam(id, res, 'ID');
   const pokemon = db.findPokemonById(id);

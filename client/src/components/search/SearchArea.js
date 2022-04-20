@@ -2,8 +2,12 @@ import React from 'react';
 
 
 
+// TODO button for submit form
 
-class PokemonList extends React.Component {
+class SearchArea extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
 
   render() {
@@ -22,4 +26,4 @@ class PokemonList extends React.Component {
 
 
 
-export default PokemonList;
+export default SearchArea;

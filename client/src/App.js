@@ -6,6 +6,7 @@ import AuthService from "./services/auth.service"
 import Login from "./pages/Login"
 import Pokedex from "./pages/Pokedex"
 import Home from "./pages/Home"
+import MainNavigation from './components/layout/MainNavigation';
 
 
 class App extends React.Component {
@@ -37,36 +38,10 @@ class App extends React.Component {
     const { currentUser } = this.state;
     return (
       <div>
-        <nav className='navbar navbar-expand navbar-dark bg-dark'>
-          <Link to={"/"} className="navbar-brand">
-            PokeInfo
-          </Link>
 
-          {currentUser ? (
-            <div className='navbar-nav ml-auto'>
-              <li className='nav-item' >
-                <Link to={"/pokedex"} className='nav-link'>
-                  {currentUser.name}
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <a href='/login' className='nav-link' onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className='navbar-nav ml-auto'>
-              <li className='nav-item'>
-                <Link to={'/login'} className='nav-link'>
-                  Login
-                </Link>
-              </li>
-            </div>
-          )}
-        </nav>
+        <MainNavigation user={currentUser} onClick={this.logOut} />
 
-        <div className='container mt-3'>
+        <div className='container'>
           <Routes>
             <Route path='/home' element={<Home />} />
             <Route path='/' element={<Home />} />
