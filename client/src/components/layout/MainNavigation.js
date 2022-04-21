@@ -1,4 +1,5 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import style from './MainNavigation.module.css';
 
 
 
@@ -7,7 +8,7 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 function MainNavigation(props) {
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky='top'>
+    <Navbar collapseOnSelect expand="lg" className={style.colored} variant="dark" sticky='top' >
       <Container>
         <Navbar.Brand href="/">PokeInfo</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -29,7 +30,7 @@ function MainNavigation(props) {
           )}
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 

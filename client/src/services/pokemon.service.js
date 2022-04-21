@@ -1,5 +1,5 @@
 import axios from 'axios';
-const APIURL = "http://localhost:5000/api/pokemon/"
+const APIURL = `http://localhost:${process.env.PORT}/api/pokemon/`
 
 
 class PokemonService {
