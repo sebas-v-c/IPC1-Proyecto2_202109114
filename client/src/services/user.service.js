@@ -10,7 +10,7 @@ class UserService {
     return axios.get(APIURL + 'all');
   }
 
-  getPokedexPage() {
+  getPage() {
     return axios.get(APIURL + 'test', { headers: authHeader() });
   }
 }

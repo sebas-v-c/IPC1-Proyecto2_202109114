@@ -1,5 +1,6 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import style from './MainNavigation.module.css';
+import image from '../../images/pokeinfoLogo.png';
 
 
 
@@ -8,9 +9,17 @@ import style from './MainNavigation.module.css';
 function MainNavigation(props) {
 
   return (
-    <Navbar collapseOnSelect expand="lg" className={style.colored} variant="dark" sticky='top' >
+    <Navbar collapseOnSelect expand="lg" className={style.colored} variant="light" sticky='top' >
       <Container>
-        <Navbar.Brand href="/">PokeInfo</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <img
+            src={image}
+            width="120"
+            height="40"
+            className="d-inline-block align-top"
+            alt="PokeInfo logo"
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

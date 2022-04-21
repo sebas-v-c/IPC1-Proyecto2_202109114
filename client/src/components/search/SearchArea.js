@@ -38,17 +38,38 @@ class SearchArea extends React.Component {
       text: this.state.text,
       filter: this.state.filter
     });
+    this.setState({ text: '' })
   }
 
 
 
   render() {
+    let inputField;
+    if (this.state.filter === 'id') {
+      inputField = <Form.Control
+        type='number'
+        min={1}
+        max={999}
+        placeholder='Buscar'
+        value={this.state.text}
+        onChange={this.onChangeText}
+      />
+    } else {
+      inputField = <Form.Control
+        type='text'
+        placeholder='Buscar'
+        value={this.state.text}
+        onChange={this.onChangeText}
+      />
+    }
+
+
     return (
       <Form onSubmit={this.submitHandler}>
         <br />
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridText">
-            <Form.Control type='text' placeholder='Buscar' ref={this.textField} value={this.state.text} onChange={this.onChangeText} />
+            {inputField}
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridFilter">

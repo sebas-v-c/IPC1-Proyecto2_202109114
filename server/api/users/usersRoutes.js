@@ -15,7 +15,7 @@ router.use(function (req, res, next) {
 
 
 router.get('/test', auth, (req, res) => {
-  res.status(200).send("User Logged In")
+  res.status(200).json({ message: 'OK' })
 })
 
 

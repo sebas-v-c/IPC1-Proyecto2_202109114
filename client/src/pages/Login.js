@@ -4,6 +4,7 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import AuthService from '../services/auth.service';
+import UserService from '../services/user.service';
 
 
 const required = (value) => {
@@ -68,11 +69,12 @@ const Login = () => {
 
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    if (user) {
-      navigate('/pokedex');
-    }
+    UserService.getPage()
+      .then(
+        (res) => {
+          navigate('/pokedex');
+        }
+      );
   }, []);
 
 

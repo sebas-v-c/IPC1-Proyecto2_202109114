@@ -1,17 +1,34 @@
 import { Card } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import UserService from '../services/user.service';
+import AuthService from '../services/auth.service';
+
 
 
 function UserInfo() {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const user = JSON.parse(localStorage.getItem('user'))
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
+    setIsLoading(true);
+    UserService.getPage()
+      .then(
+        (res) => {
+          console.log(res.data.message);
+          setIsLoading(false)
+        }).catch(
+          (error) => {
+            console.log(error);
+            navigate('/login');
+          })
   }, []);
+
+  if (isLoading) {
+    return <div>Verificando...</div>
+  }
+
+  const user = AuthService.getCurrentUser();
 
   return (
     <Card style={{ width: '25rem' }}>
@@ -27,5 +44,7 @@ function UserInfo() {
     </Card>
   )
 }
+
+
 
 export default UserInfo;
