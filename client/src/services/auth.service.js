@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverPort = process.env.SERVPORT || 5000;
+const serverPort = process.env.REACT_APP_SERVPORT || 5000;
 const APIURL = `http://localhost:${serverPort}/api/auth/`
 
 
@@ -8,6 +8,8 @@ const APIURL = `http://localhost:${serverPort}/api/auth/`
 // Login function
 const login = (username, password) => {
   // Return the respondse with data, if there is a token store it in localStorage
+  console.log(serverPort);
+  console.log(APIURL);
   return axios
     .post(APIURL + "login", {
       username,

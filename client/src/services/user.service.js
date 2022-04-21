@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const serverPort = process.env.SERVPORT
+const serverPort = process.env.REACT_APP_SERVPORT || 5000;
 const APIURL = `http://localhost:${serverPort}/api/users/`
 
 
