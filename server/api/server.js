@@ -30,10 +30,6 @@ app.get('/', (req, res) => {
   res.send('<h1>API trabajando al 100%</h1>');
 })
 
-app.post('/homepage', authenticate, (req, res) => {
-  res.send('<h1>Estas ingresado</h1>')
-})
-
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
