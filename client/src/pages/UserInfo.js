@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import UserService from '../services/user.service';
 import AuthService from '../services/auth.service';
 
