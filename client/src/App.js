@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import AuthService from "./services/auth.service"
