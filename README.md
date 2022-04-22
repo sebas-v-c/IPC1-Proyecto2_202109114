@@ -211,7 +211,7 @@ El proyecto se creó con el comando `npx create-react-app .` el cual configura d
 
 ### Pokedex
 
-#### Por defeto
+#### Por defecto
 
 ![página pokedex](screenshots/pokedexpage.png)
 
