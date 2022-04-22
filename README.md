@@ -2,6 +2,59 @@
 
 Frontend y Backend para una pokedex con la capacidad de gestionar usuarios
 
+
+<a href="#tabla-de-datos">Tabla de Datos</a>
+
+<details>
+  <summary>
+    <a href="#backend">Backend</a>
+  </summary>
+
+* [Endpoints](#endpoints)</br>
+  * [/](#/)</br>
+  * [/api/auth/login](#/api/auth/login)</br>
+  * [/api/users/test](#/api/users/test)</br>
+  * [/api/users/all](#/api/users/all)</br>
+  * [/api/pokemon/](#/api/pokemon/)</br>
+  * [/api/pokemon/id/:id](#/api/pokemon/id/:id)</br>
+  * [/api/pokemon/name/:name](#/api/pokemon/name/:name)</br>
+  * [/api/pokemon/type/:type](#/api/pokemon/type/:type)</br>
+  * [/api/pokemon/all/:param](#/api/pokemon/all/:param)</br>
+  
+* [Configuración](#configuración)<br/>
+  * [Cambiar Puerto](#cambiar-puerto)<br/>
+  * [Cambiar firma del JWT](#cambiar-firma-del-jwt)<br/>
+
+* [Dependencias](#dependecias)<br/>
+  * [Dependencias de desarrollo](#dependecias-de-desarrollo)<br/>
+</details>
+
+
+<details>
+  <summary>
+    <a href="#frontend">Frontend</a>
+  </summary>
+
+* [Manual de uso](#manual-de-uso)</br>
+  * [Página principal](#página-principal)</br>
+  * [Log in](#log-in)</br>
+  * [Barra de navegación con usuario ingresado](#barra-de-navegación-con-usuario-ingresado)</br>
+  * [Página de usuario](#página-de-usuario)</br>
+  * [Pokedex](#pokedex)</br>
+    * [Por defecto](#por-defecto)</br>
+    * [Por tipo](#por-tipo)</br>
+    
+* [React](#react)<br/>
+  * [Dependencias](#dependecias-de-react)<br/>
+  
+* [Configuración](#configuración-de-react)<br/>
+  * [Cambiar Puerto](#puerto)<br/>
+  * [Cambiar Puerto del servidor](#puerto-de-la-api)<br/>
+
+
+</details>
+
+
 ## Tabla de datos
 
 |Nombre|Datos|
@@ -11,11 +64,16 @@ Frontend y Backend para una pokedex con la capacidad de gestionar usuarios
 
 
 
+
+
+
+
+
 # Backend
 
 El Backend se realizó como una REST API en Nodejs. 
 Es necesario tener Nodejs instalado en el sistema para poder correr el servidor.
-Para correr el servidor ingresar a la carpeta llamada "server" y ejecutar el comando `npm install` para instalar todas las [dependencias](#-dependecias).
+Para correr el servidor ingresar a la carpeta llamada "server" y ejecutar el comando `npm install` para instalar todas las [dependencias](#dependecias).
 <br/>
 De no dar una configuración específica el servidor correrá por defecto en el puerto 5000.
 
@@ -100,10 +158,80 @@ Si se desea alargar o acortar el "secreto" del servido para generar token jwt ex
 # Frontend
 El Frontend se realizó con el apoyo de la tecnología React.
 Para correr el servidor del frontend escribir en la terminal `npm start` por defecto el servidor correrá en el puerto 3000, para acceder desde el navegador escribir `http://localhost:3000/`
+<br/>
 
+El proyecto se creó con el comando `npx create-react-app .` el cual configura de forma automática un proyecto en react además instala varias [dependencias](#dependencias-de-react) escenciales para usar react.
 
 ## Manual de uso
+
+### Página principal
+
 ![página de inicio](screenshots/homepage.png)
+
+
+* **1** : url de la página actual.
+* **2** : Opción de Log In para redirigirse a la página de Login
+* **3** : Logo de la página, al clickarlo redirige a la página principal.
+* **4** : Contenido de la página principal de la app.
+
+### Log in
+
+
+![página de login](screenshots/loginpage.png)
+
+
+* **1** : Campo de texto para ingresar el usuario
+* **2** : Campo de contraseña
+* **3** : Botón para enviar y comprobar los datos escritos
+
+
+
+### Barra de navegación con usuario ingresado
+
+
+![Barra de navegación v2](screenshots/navbarstate.png)
+
+
+* **1** : Muestra el nombre de usuario, y si se le da click se redirige a la página de información de usuario
+* **2** : Redirige a la página de la pokedex
+* **3** : Cierra la sesión del usuario actual.
+
+
+
+### Página de usuario
+
+![página de usuario](screenshots/userpage.png)
+
+* **1** : Sprite del usuario ingresado 
+* **2** : Nombre de usuario
+* **3** : token JWT con el cual se autentica este usuario
+
+
+
+
+### Pokedex
+
+#### Por defeto
+
+![página pokedex](screenshots/pokedexpage.png)
+
+
+* **1** : Cuadro de texto donde se ingresa el criterio a buscar
+* **2** : Menu de selección para elegir el filtro para buscar
+* **3** : Botón para solicitar el criterio de búsqueda con el filtro
+* **4** : Tarjeta pokemon donde se muestra la información del pokemon
+* **5** : Sprite del pokemon dentro de la tarjeta
+* **6** : Nombre del pokemon
+* **7** : Lista de información del pokemon
+* **8** : Sección donde se muestran todos los pokemon encontrados bajo el criterio de búsqueda.
+
+
+#### Por tipo
+
+![Filtro por tipo](screenshots/pokedexpagetype.png)
+
+* **2** : Si se especifica que el filtro sea por tipo, entonces el contenedor de las tarjetas pokemon cambiara a un color que represente el tipo especificado.
+
 
 
 ## React
@@ -112,3 +240,52 @@ React es una libreria para JavaScript que facilita el trabajo de crear interface
 React usa una extensión de sitaxis llamada JSX, que permite crear mezclar de forma
 explícita la lógica de renderización con la lógica de la interfaz de usuario. 
 
+
+
+### Dependencias de React
+
+
+* **bootstrap** : Permite agregar el css de bootstrap a los componentes de React
+* **react-bootstrap** : Agrega componentes ya con el estilo de bootstrap 
+* **react-router-dom** : Permite crear diferentes rutas a diferentes páginas dentro de la apliación de React
+* **axios** : Facilita la conexión a la API con un cliente HTTP basado en promesas (promises)
+* **ract-validation** : Provee de una forma sensilla de validar formularios.
+
+
+<br/>
+
+El resto de dependencias fueron instaladas de forma automática por `create-react-app`
+
+
+## Configuración de React
+
+### Puerto
+Por defecto el servidor de React se colocará en el puerto 3000 si se desea cambiar de puerto se debe de crear una variable global en la terminal llamada `PORT` como se muestra a continuación.
+
+
+* **Bash, Zsh** `$ export PORT=3001`
+
+
+* **Fish** `$ set -x PORT 3001`
+
+
+* **CMD** `set PORT=3001`
+
+
+* **Powershell** `$env:PORT = 3001`
+
+
+### Puerto de la API
+El puerto en el que la API correrá también puede ser variable, por lo que se debe de especificar para la app de React. Para establecer una variable global que la pueda interpretar react es necesario llamarla `REACT_APP_SERVPORT`. como se muestra a continuación.
+
+
+* **Bash, Zsh** `$ export REACT_APP_SERVPORT=5001`
+
+
+* **Fish** `$ set -x REACT_APP_SERVPORT 5001`
+
+
+* **CMD** `set REACT_APP_SERVPORT=5001`
+
+
+* **Powershell** `$env:REACT_APP_SERVPORT = 5001`

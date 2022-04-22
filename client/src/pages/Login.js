@@ -108,6 +108,7 @@ const Login = () => {
             />
           </div>
 
+          <br />
           <div className='form-group'>
             <button className='btn btn-primary btn-block' disabled={loading}>
               {loading && (
@@ -124,6 +125,7 @@ const Login = () => {
               </div>
             </div>
           )}
+
 
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
 

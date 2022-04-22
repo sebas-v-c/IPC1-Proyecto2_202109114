@@ -74,8 +74,8 @@ class SearchArea extends React.Component {
 
           <Form.Group as={Col} controlId="formGridFilter">
             <Form.Select ref={this.filterField} value={this.state.filter} onChange={this.onChangeFilter}>
-              <option value='all'>Todos</option>
-              <option value='id'>Numero</option>
+              <option value='all'>Todo</option>
+              <option value='id'>Número</option>
               <option value='name'>Nombre</option>
               <option value='type'>Tipo</option>
             </Form.Select>
