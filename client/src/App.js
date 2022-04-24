@@ -8,7 +8,6 @@ import Pokedex from "./pages/Pokedex"
 import Home from "./pages/Home"
 import UserInfo from "./pages/UserInfo"
 import MainNavigation from './components/layout/MainNavigation';
-import UserService from './services/user.service';
 
 
 class App extends React.Component {
@@ -20,20 +19,6 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      UserService.getPage()
-        .then(
-          res => {
-            this.setState({
-              currentUser: user
-            });
-          }
-        )
-    }
-  }
-
 
   logOut() {
     AuthService.logout();
@@ -42,11 +27,11 @@ class App extends React.Component {
 
 
   render() {
-    const { currentUser } = this.state;
+    const user = AuthService.getCurrentUser;
     return (
       <div>
 
-        <MainNavigation user={currentUser} onClick={this.logOut} />
+        <MainNavigation user={user} onClick={this.logOut} />
 
         <div className='container'>
           <Routes>

@@ -8,7 +8,7 @@ import UserService from '../services/user.service';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-function PokedexPage(props) {
+function PokedexPage() {
   let navigate = useNavigate();
   const [userLoading, setUserLoading] = useState(true);
 

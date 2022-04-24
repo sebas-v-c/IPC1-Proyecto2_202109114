@@ -28,7 +28,9 @@ function MainNavigation(props) {
             <Nav>
               <Nav.Link href="/user">{props.user.name}</Nav.Link>
               <Nav.Link href="/pokedex">Pokedex</Nav.Link>
-              <Button variant="outline-secondary">Logout</Button>{' '}
+              <a href='/'>
+                <Button variant="outline-secondary" onClick={props.onClick}>Logout</Button>{' '}
+              </a>
             </Nav>
           ) : (
             <Nav>
