@@ -6,19 +6,19 @@ const APIURL = `http://localhost:${serverPort}/api/auth/`
 
 // Local storage save the data in an xml file
 // Login function
-const login = (username, password) => {
+function login(username, password) {
   // Return the respondse with data, if there is a token store it in localStorage
   return axios
     .post(APIURL + "login", {
       username,
       password
     })
-    .then(response => {
+    .then((response) => {
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
-    })
+    });
 }
 
 // Logout functoin removing the item in the local storage

@@ -15,4 +15,4 @@ class PokemonService {
   }
 }
 
-export default new PokemonService;
+export default new PokemonService();

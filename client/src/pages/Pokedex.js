@@ -26,6 +26,7 @@ function PokedexPage(props) {
           navigate('/login')
         }
         )
+    // eslint-disable-next-line
   }, []);
 
   if (userLoading) {

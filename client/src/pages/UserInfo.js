@@ -22,6 +22,7 @@ function UserInfo() {
             console.log(error);
             navigate('/login');
           })
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {
