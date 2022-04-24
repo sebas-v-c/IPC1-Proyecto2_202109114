@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import style from './MainNavigation.module.css';
 import image from '../../images/pokeinfoLogo.png';
 
@@ -28,9 +28,7 @@ function MainNavigation(props) {
             <Nav>
               <Nav.Link href="/user">{props.user.name}</Nav.Link>
               <Nav.Link href="/pokedex">Pokedex</Nav.Link>
-              <Nav.Link href="/" onClick={props.onClick}>
-                Log Out
-              </Nav.Link>
+              <Button variant="outline-secondary">Logout</Button>{' '}
             </Nav>
           ) : (
             <Nav>

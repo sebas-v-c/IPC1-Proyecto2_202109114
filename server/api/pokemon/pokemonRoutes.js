@@ -23,9 +23,11 @@ router.get('/id/:id', (req, res) => {
   } else {
 
     const pokemon = db.findPokemonById(id);
-    ifNotFound(pokemon, res)
-
-    res.json([pokemon]);
+    if (!pokemon) {
+      res.status(500).json({ "message": "No pokemon found" });
+    } else {
+      res.json([pokemon]);
+    }
   }
 
 });
@@ -39,7 +41,13 @@ router.get('/name/:name', (req, res) => {
 
   ifNotFound(pokemon, res);
 
-  res.json([pokemon]);
+
+  if (!pokemon) {
+    res.status(500).json({ "message": "No pokemon found" });
+  } else {
+    res.json([pokemon]);
+  }
+
 });
 
 router.get('/type/:type', (req, res) => {
@@ -50,9 +58,11 @@ router.get('/type/:type', (req, res) => {
 
   const pokemon = db.findPokemonByType(type);
 
-  ifNotFound(pokemon, res);
-
-  res.json(pokemon);
+  if (!pokemon) {
+    res.status(500).json({ "message": "No pokemon found" });
+  } else {
+    res.json(pokemon);
+  }
 });
 
 router.get('/all/:param', (req, res) => {
@@ -65,16 +75,15 @@ router.get('/all/:param', (req, res) => {
   }
 
   const pokemon = db.findPokemonByParam(param);
-  ifNotFound(pokemon, res);
-
-  res.json(pokemon);
+  if (!pokemon) {
+    res.status(500).json({ "message": "No pokemon found" });
+  } else {
+    res.json(pokemon);
+  }
 })
 
 
 function ifNotFound(pokemon, res) {
-  if (!pokemon) {
-    res.status(500).json({ "message": "No pokemon found" });
-  }
 }
 
 function ifInvalidParam(param, res, type) {

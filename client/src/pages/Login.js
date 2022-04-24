@@ -18,7 +18,7 @@ const required = (value) => {
 }
 
 
-const Login = () => {
+function Login() {
   let navigate = useNavigate();
   const form = useRef();
   const checkBtn = useRef();
@@ -75,6 +75,7 @@ const Login = () => {
           navigate('/pokedex');
         }
       );
+    // eslint-disable-next-line
   }, []);
 
 
