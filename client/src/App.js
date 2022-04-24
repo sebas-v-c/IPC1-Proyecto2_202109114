@@ -27,7 +27,7 @@ class App extends React.Component {
 
 
   render() {
-    const user = AuthService.getCurrentUser;
+    const user = AuthService.getCurrentUser();
     return (
       <div>
 

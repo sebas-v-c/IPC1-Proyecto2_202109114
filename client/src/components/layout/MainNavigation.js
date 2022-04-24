@@ -34,7 +34,9 @@ function MainNavigation(props) {
             </Nav>
           ) : (
             <Nav>
-              <Nav.Link href="/login" >Log In</Nav.Link>
+              <a href='/login'>
+                <Button variant="primary" >Log In</Button>{' '}
+              </a>
             </Nav>
           )}
         </Navbar.Collapse>
